@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-if exists("b:current_syntax")
+if exists('b:current_syntax')
   finish
 endif
 
@@ -8,7 +8,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-if !exists("g:pico8_config")
+if !exists('g:pico8_config')
   let g:pico8_config = {}
 endif
 
@@ -114,7 +114,7 @@ if get(g:pico8_config, 'colorize_graphics', 1)
 endif
 
 
-let b:current_syntax = "pico8"
+let b:current_syntax = 'pico8'
 
 
 let &cpo = s:save_cpo
