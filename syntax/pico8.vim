@@ -43,6 +43,8 @@ syn keyword pico8Func contained containedin=@luaNormal atan2 sqrt abs rnd srand 
 syn keyword pico8Func contained containedin=@luaNormal rotl rotr shl shr lshr menuitem sub type
 syn keyword pico8Func contained containedin=@luaNormal tostr tonum cartdata dget dset serial
 syn keyword pico8Func contained containedin=@luaNormal cocreate coresume costatus yield
+syn keyword pico8Func contained containedin=@luaNormal ls reset oval ovalfill deli count tline chr
+syn keyword pico8Func contained containedin=@luaNormal ord split pack unpack
 
 syn sync match pico8 grouphere pico8Lua "^-->8$"
 syn sync match pico8 grouphere pico8Lua "^__lua__$"
