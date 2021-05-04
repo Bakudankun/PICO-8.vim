@@ -8,11 +8,6 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-if !exists('g:pico8_config')
-  let g:pico8_config = {}
-endif
-
-
 let lua_version = 5
 let lua_subversion = 2
 syn include @lua syntax/lua.vim
@@ -56,7 +51,7 @@ hi def link pico8Func luaFunc
 hi def link pico8Include Include
 
 
-if get(g:pico8_config, 'colorize_graphics', 1)
+if pico8#get_config('colorize_graphics', 1)
   syn match pico8Color0 contained "0"
   syn match pico8Color1 contained "1"
   syn match pico8Color2 contained "2"
