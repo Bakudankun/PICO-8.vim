@@ -18,10 +18,11 @@ INTRODUCTION						*pico8*
 
 PICO-8.vim is a plugin package that adds support for PICO-8 cartridge files.
 
-- Proper syntax highlighting for .p8 files
+- Proper syntax highlighting for .p8 files as well as folding
+  (Check if 'foldmethod' is "syntax")
 - Make vim visually imitate the PICO-8 console
 - Colorize graphics data
-- Keymaps to easily input symbols with uppercase letters
+- Keymaps to easily input symbols with Shift+[A-Z]
 - :Pico8Run command to run current file in PICO-8
 
 
@@ -44,14 +45,15 @@ Every options are contained in *g:pico8_config* dictionary.
 					*g:pico8_config.colorize_graphics*
 colorize_graphics	(default: 1)
 			If |TURE|, graphics data under "__gfx__" and
-			"__label__" sections are highlighted to show their
+			"__label__" sections are colorized.
+			Note: gVim or 'termguicolors' is required for accurate
 			color.
 			Note: This may make vim slow.
 
 					*g:pico8_config.imitate_console*
 imitate_console		(default: 1)
 			If |TRUE|, vim imitates PICO-8 console. Tab width is
-			set to 1, and |'colorcolumn'| shows the border at the
+			set to 1, and 'colorcolumn' shows the border at the
 			width of PICO-8 console.
 
 					*g:pico8_config.pico8_path*
@@ -62,7 +64,7 @@ pico8_path		(default: "pico8")
 					*g:pico8_config.use_keymap*
 use_keymap		(default: 1)
 			If |TRUE|, the included keymap for PICO-8 is set to
-			|'keymap'|. With this keymap, you can insert symbols
+			'keymap'. With this keymap, you can insert symbols
 			with uppercase letters like in the PICO-8 console. Hit
 			<Ctrl-^> to switch the keymap feature (|i_CTRL-^|).
 
