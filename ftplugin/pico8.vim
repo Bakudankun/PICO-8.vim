@@ -34,10 +34,12 @@ endif
 
 if has('terminal')
   function! s:pico8_run(mods, options) abort
-    execute a:mods . ' terminal ' . join(filter(a:options, 'v:val =~ "^++"'))
-          "\ PICO-8 on Windows does not output logs if run directly.
-          \ . (has('win32') ? ' cmd.exe /C ' : ' ')
-          \ . get(g:pico8_config, 'pico8_path', 'pico8') . ' -run %'
+    let cmdline = '"' . get(g:pico8_config, 'pico8_path', 'pico8') . '" -run %:S'
+    if has('win32')
+      " PICO-8 on Windows does not output logs if run directly.
+      let cmdline = 'cmd.exe /C "' . cmdline . '"'
+    endif
+    execute a:mods 'terminal' join(filter(a:options, 'v:val =~ "^++"')) cmdline
   endfunction
 
   command! -buffer -nargs=* Pico8Run call s:pico8_run(<q-mods>, [<f-args>])
