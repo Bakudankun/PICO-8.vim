@@ -14,12 +14,17 @@ endfunction
 
 
 function! pico8#run(mods, options) abort
-  let cmdline = '"' . pico8#get_config('pico8_path', 'pico8') . '" -run %:S'
+  let cmdline = '"' . pico8#get_config('pico8_path', 'pico8') . '" -run ' . expand('%:S')
   if has('win32')
     " PICO-8 on Windows does not output logs if run directly.
     let cmdline = 'cmd.exe /C "' . cmdline . '"'
   endif
-  execute a:mods 'terminal' join(filter(a:options, 'v:val =~ "^++"')) cmdline
+
+  if has('nvim')
+    execute a:mods 'split' join(filter(a:options, 'v:val =~ "^+"')) 'term://' . fnameescape(cmdline)
+  else
+    execute a:mods 'terminal' join(filter(a:options, 'v:val =~ "^++"')) cmdline
+  endif
 endfunction
 
 

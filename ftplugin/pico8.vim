@@ -28,7 +28,7 @@ if pico8#get_config('use_keymap', 1)
   let b:undo_ftplugin .= ' | setlocal kmp<'
 endif
 
-if has('terminal')
+if has('terminal') || has('nvim')
   command! -buffer -nargs=* Pico8Run call pico8#run(<q-mods>, [<f-args>])
   let b:undo_ftplugin .= ' | delcommand Pico8Run'
 endif
