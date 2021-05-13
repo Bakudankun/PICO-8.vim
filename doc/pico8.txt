@@ -32,9 +32,11 @@ COMMANDS						*pico8-commands*
 :Pico8Run [options]					*:Pico8Run*
 			Open PICO-8 and run the current file. Logs by
 			"printh()" are output to the opened |terminal-window|.
-			Options for |:terminal| like "++close" can be used.
-			Note: This requires |+terminal| feature and
-			|g:pico8_config.pico8_path| to be set properly.
+			On Vim, options for |:terminal| like "++close" are
+			available. Also see |term++close|.
+			On Neovim, |++opt| and |+cmd| are available.
+			Note: This requires |+terminal| feature or Neovim, as
+			well as |g:pico8_config.pico8_path| to be set properly.
 
 
 ==============================================================================
@@ -48,13 +50,13 @@ colorize_graphics	(default: 1)
 			"__label__" sections are colorized.
 			Note: gVim or 'termguicolors' is required for accurate
 			color.
-			Note: This may make vim slow.
+			Note: This feature may make vim slow.
 
 					*g:pico8_config.imitate_console*
 imitate_console		(default: 1)
-			If |TRUE|, vim imitates PICO-8 console. Tab width is
-			set to 1, and 'colorcolumn' shows the border at the
-			width of PICO-8 console.
+			If |TRUE|, vim imitates PICO-8 console display. Tab
+			width is set to 1, and 'colorcolumn' shows the border
+			at the width of PICO-8 console.
 
 					*g:pico8_config.pico8_path*
 pico8_path		(default: "pico8")
