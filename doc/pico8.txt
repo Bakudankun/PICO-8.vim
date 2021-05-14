@@ -23,7 +23,7 @@ PICO-8.vim is a plugin package that adds support for PICO-8 cartridge files.
 - Make vim visually imitate the PICO-8 console
 - Colorize graphics data
 - Keymaps to easily input symbols with Shift+[A-Z]
-- :Pico8Run command to run current file in PICO-8
+- :Pico8Run command to run the current file in PICO-8
 
 
 ==============================================================================

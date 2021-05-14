@@ -18,5 +18,6 @@ cartridge files.
 ![colorize demo](https://user-images.githubusercontent.com/4504807/116973405-72ed8380-acf7-11eb-94b4-9cf3f7b09c5e.png)
 
 * Keymaps to easily input symbols with Shift+[A-Z]
-* `:Pico8Run` command to run current file in PICO-8
+* `:Pico8Run` command to run the current file in PICO-8
 
+For details and configurations, see the [help doc](doc/pico8.txt).
