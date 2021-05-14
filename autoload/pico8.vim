@@ -17,7 +17,7 @@ function! pico8#run(mods, options) abort
   let cmdline = '"' . pico8#get_config('pico8_path', 'pico8') . '" -run ' . expand('%:S')
   if has('win32')
     " PICO-8 on Windows does not output logs if run directly.
-    let cmdline = 'cmd.exe /C "' . cmdline . '"'
+    let cmdline = $ComSpec . ' /C "' . cmdline . '"'
   endif
 
   if has('nvim')
