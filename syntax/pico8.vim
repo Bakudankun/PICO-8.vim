@@ -14,7 +14,7 @@ syn include @lua syntax/lua.vim
 
 
 syn region pico8Lua transparent matchgroup=pico8Section start="^__lua__$" end="^__\l\+__$"me=s-1 contains=pico8Tab fold
-syn region pico8Tab transparent matchgroup=pico8Tab start="^" end="^-->8$" end="^__\l\+__$"me=s-1 keepend contained contains=@lua,pico8Include,pico8Func,pico8ShortIf fold
+syn region pico8Tab transparent matchgroup=pico8Tab start="^" end="^-->8$" end="^__\l\+__$"me=s-1 keepend contained contains=@lua,pico8Include,pico8Func,pico8ShortIf,pico8ShortWhile fold
 syn region pico8Gfx transparent matchgroup=pico8Section start="^__gfx__$" end="^__\l\+__$"me=s-1 contains=@pico8Pixel fold
 syn region pico8Gff transparent matchgroup=pico8Section start="^__gff__$" end="^__\l\+__$"me=s-1 contains=pico8Flag fold
 syn region pico8Label transparent matchgroup=pico8Section start="^__label__$" end="^__\l\+__$"me=s-1 contains=@pico8Pixel fold
@@ -28,6 +28,9 @@ syn cluster luaNormal contains=luaParen,luaTableBlock,luaFunctionBlock,luaIfThen
 syn match pico8Include contained containedin=@lua "#include\>"
 syn match pico8ShortIf contained containedin=luaFunctionBlock,luaThenEnd,luaElseifThen,luaBlock,luaLoopBlock
       \ "\<if\>\s*(.\+)\%(\s*\%(then\|and\|or\|not\|)\|\[\|\]\|,\|+\|-\|\*\|\/\|^\|&\||\|^^\|\~\|<<\|>>\|>>>\|<<>\|>><\|==\|<\|>\|<=\|>=\|\~=\|!=\|,\|\.\|:\)\)\@!\s*.\+"me=s+2
+      \ nextgroup=luaParen skipwhite
+syn match pico8ShortWhile contained containedin=luaFunctionBlock,luaThenEnd,luaElseifThen,luaBlock,luaLoopBlock
+      \ "\<while\>\s*(.\+)\%(\s*\%(do\|and\|or\|not\|)\|\[\|\]\|,\|+\|-\|\*\|\/\|^\|&\||\|^^\|\~\|<<\|>>\|>>>\|<<>\|>><\|==\|<\|>\|<=\|>=\|\~=\|!=\|,\|\.\|:\)\)\@!\s*.\+"me=s+5
       \ nextgroup=luaParen skipwhite
 syn keyword pico8Func contained containedin=@luaNormal load save folder dir run stop resume reboot
 syn keyword pico8Func contained containedin=@luaNormal info flip printh time t stat extcmd clip pget
@@ -53,6 +56,7 @@ hi def link pico8Section Title
 hi def link pico8Func luaFunc
 hi def link pico8Include Include
 hi def link pico8ShortIf luaCond
+hi def link pico8ShortWhile luaCond
 
 
 if pico8#get_config('colorize_graphics', 1)
