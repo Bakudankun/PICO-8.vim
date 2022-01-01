@@ -27,10 +27,10 @@ syn cluster luaNormal contains=luaParen,luaTableBlock,luaFunctionBlock,luaIfThen
 
 syn match pico8Include contained containedin=@lua "#include\>"
 syn match pico8ShortIf contained containedin=luaFunctionBlock,luaThenEnd,luaElseifThen,luaBlock,luaLoopBlock
-      \ "\<if\>\s*(.\+)\%(\s*\%(then\|and\|or\|not\|)\|\[\|\]\|,\|+\|-\|\*\|\/\|^\|&\||\|^^\|\~\|<<\|>>\|>>>\|<<>\|>><\|==\|<\|>\|<=\|>=\|\~=\|!=\|,\|\.\|:\)\)\@!\s*\S\+"me=s+2
+      \ "\<if\>\s*(.\+)\%(\s*\%(then\|and\|or\|not\|)\|\[\|\]\|,\|+\|-\|\*\|\/\|%\|^\|&\||\|^^\|\~\|<<\|>>\|>>>\|<<>\|>><\|==\|<\|>\|<=\|>=\|\~=\|!=\|,\|\.\|:\)\)\@!\s*\S\+"me=s+2
       \ nextgroup=luaParen skipwhite
 syn match pico8ShortWhile contained containedin=luaFunctionBlock,luaThenEnd,luaElseifThen,luaBlock,luaLoopBlock
-      \ "\<while\>\s*(.\+)\%(\s*\%(do\|and\|or\|not\|)\|\[\|\]\|,\|+\|-\|\*\|\/\|^\|&\||\|^^\|\~\|<<\|>>\|>>>\|<<>\|>><\|==\|<\|>\|<=\|>=\|\~=\|!=\|,\|\.\|:\)\)\@!\s*\S\+"me=s+5
+      \ "\<while\>\s*(.\+)\%(\s*\%(do\|and\|or\|not\|)\|\[\|\]\|,\|+\|-\|\*\|\/\|%\|^\|&\||\|^^\|\~\|<<\|>>\|>>>\|<<>\|>><\|==\|<\|>\|<=\|>=\|\~=\|!=\|,\|\.\|:\)\)\@!\s*\S\+"me=s+5
       \ nextgroup=luaParen skipwhite
 syn keyword pico8Func contained containedin=@luaNormal load save folder dir run stop resume reboot
 syn keyword pico8Func contained containedin=@luaNormal info flip printh time t stat extcmd clip pget
