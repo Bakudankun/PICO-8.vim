@@ -21,8 +21,9 @@ setlocal indentexpr=GetPico8Indent()
 function! GetPico8Indent() abort
   let s:save_cursor = getcurpos()
 
-  " Do not indent if the cursor is not in the `__lua__` section
-  if search('\(^__lua__$\)\|^__\l\+__$', 'bcnp') != 2
+  " Do not indent if the cursor is not in the lua code
+  if getline(1) =~# '^pico-8 cartridge' &&
+        \ search('\(^__lua__$\)\|^__\l\+__$', 'bcnp') != 2
     return 0
   endif
 

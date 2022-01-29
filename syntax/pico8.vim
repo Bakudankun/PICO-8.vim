@@ -8,24 +8,40 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
+" If the file is not a cartridge, think the whole file is a lua script.
+let s:is_cartridge = getline(1) =~# '^pico-8 cartridge'
+
+
 let lua_version = 5
 let lua_subversion = 2
-syn include @lua syntax/lua.vim
+
+if s:is_cartridge
+  syn include @lua syntax/lua.vim
+else
+  runtime! syntax/lua.vim
+endif
 
 
-syn region pico8Lua transparent matchgroup=pico8Section start="^__lua__$" end="^__\l\+__$"me=s-1 contains=pico8Tab fold
-syn region pico8Tab transparent matchgroup=pico8Tab start="^" end="^-->8$" end="^__\l\+__$"me=s-1 keepend contained contains=@lua,pico8Include,pico8Func,pico8ShortIf,pico8ShortWhile fold
-syn region pico8Gfx transparent matchgroup=pico8Section start="^__gfx__$" end="^__\l\+__$"me=s-1 contains=@pico8Pixel fold
-syn region pico8Gff transparent matchgroup=pico8Section start="^__gff__$" end="^__\l\+__$"me=s-1 contains=pico8Flag fold
-syn region pico8Label transparent matchgroup=pico8Section start="^__label__$" end="^__\l\+__$"me=s-1 contains=@pico8Pixel fold
-syn region pico8Map transparent matchgroup=pico8Section start="^__map__$" end="^__\l\+__$"me=s-1 contains=pico8Sprite fold
-syn region pico8Sfx transparent matchgroup=pico8Section start="^__sfx__$" end="^__\l\+__$"me=s-1 contains=pico8Sequence fold
-syn region pico8Music transparent matchgroup=pico8Section start="^__music__$" end="^__\l\+__$"me=s-1 contains=pico8Track fold
+if s:is_cartridge
+  syn region pico8Lua transparent matchgroup=pico8Section start="^__lua__$" end="^__\l\+__$"me=s-1 contains=pico8Tab fold
+  syn region pico8Tab transparent matchgroup=pico8Tab start="^" end="^-->8$" end="^__\l\+__$"me=s-1 keepend contained contains=@lua,pico8Include,pico8Func,pico8ShortIf,pico8ShortWhile fold
+  syn region pico8Gfx transparent matchgroup=pico8Section start="^__gfx__$" end="^__\l\+__$"me=s-1 contains=@pico8Pixel fold
+  syn region pico8Gff transparent matchgroup=pico8Section start="^__gff__$" end="^__\l\+__$"me=s-1 contains=pico8Flag fold
+  syn region pico8Label transparent matchgroup=pico8Section start="^__label__$" end="^__\l\+__$"me=s-1 contains=@pico8Pixel fold
+  syn region pico8Map transparent matchgroup=pico8Section start="^__map__$" end="^__\l\+__$"me=s-1 contains=pico8Sprite fold
+  syn region pico8Sfx transparent matchgroup=pico8Section start="^__sfx__$" end="^__\l\+__$"me=s-1 contains=pico8Sequence fold
+  syn region pico8Music transparent matchgroup=pico8Section start="^__music__$" end="^__\l\+__$"me=s-1 contains=pico8Track fold
+endif
 
 syn cluster luaNormal contains=luaParen,luaTableBlock,luaFunctionBlock,luaIfThen,
       \luaThenEnd,luaElseifThen,luaBlock,luaLoopBlock
 
-syn match pico8Include contained containedin=@lua "#include\>"
+if s:is_cartridge
+  syn match pico8Include contained containedin=@lua "#include\>"
+else
+  syn match pico8Include "#include\>"
+endif
+
 syn match pico8ShortIf contained containedin=luaFunctionBlock,luaThenEnd,luaElseifThen,luaBlock,luaLoopBlock
       \ "\<if\>\s*(.\+)\%(\s*\%(then\|and\|or\|not\|)\|\[\|\]\|,\|+\|-\|\*\|\/\|%\|^\|&\||\|^^\|\~\|<<\|>>\|>>>\|<<>\|>><\|==\|<\|>\|<=\|>=\|\~=\|!=\|,\|\.\|:\)\)\@!\s*\S\+"me=s+2
       \ nextgroup=luaParen skipwhite
@@ -47,8 +63,10 @@ syn keyword pico8Func contained containedin=@luaNormal cocreate coresume costatu
 syn keyword pico8Func contained containedin=@luaNormal ls reset oval ovalfill deli count tline chr
 syn keyword pico8Func contained containedin=@luaNormal ord split pack unpack
 
-syn sync match pico8 grouphere pico8Lua "^-->8$"
-syn sync match pico8 grouphere pico8Lua "^__lua__$"
+if s:is_cartridge
+  syn sync match pico8 grouphere pico8Lua "^-->8$"
+  syn sync match pico8 grouphere pico8Lua "^__lua__$"
+endif
 
 
 hi def link pico8Tab luaComment
@@ -59,7 +77,7 @@ hi def link pico8ShortIf luaCond
 hi def link pico8ShortWhile luaCond
 
 
-if pico8#get_config('colorize_graphics', 1)
+if s:is_cartridge && pico8#get_config('colorize_graphics', 1)
   syn match pico8Color0 contained "0"
   syn match pico8Color1 contained "1"
   syn match pico8Color2 contained "2"
@@ -116,6 +134,8 @@ if pico8#get_config('colorize_graphics', 1)
   call s:highlight_pixels()
 endif
 
+
+unlet s:is_cartridge
 
 let b:current_syntax = 'pico8'
 
