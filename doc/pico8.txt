@@ -11,6 +11,7 @@ CONTENTS						*pico8-contents*
 INTRODUCTION						|pico8|
 COMMANDS						|pico8-commands|
 OPTIONS							|pico8-options|
+FAQ							|pico8-faq|
 
 
 ==============================================================================
@@ -69,6 +70,17 @@ use_keymap		(default: 1)
 			'keymap'. With this keymap, you can insert symbols
 			with uppercase letters like in the PICO-8 console. Hit
 			<Ctrl-^> to switch the keymap feature (|i_CTRL-^|).
+
+
+==============================================================================
+FAQ							*pico8-faq*
+
+------------------------------------------------------------------------------
+Q:	How to use pico8 syntax highlighting in a plain lua file?
+
+A:	Add a |modeline| that sets ft=pico8 at the top or bottom of the lua
+	file. A concrete example cannot be written here because that will be
+	applied to this help file. Sorry!
 
 
  vim:tw=78:ts=8:noet:ft=help:norl:
