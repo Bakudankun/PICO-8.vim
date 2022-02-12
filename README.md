@@ -9,6 +9,11 @@ cartridge files.
 
 (The nice colorscheme is from [markbahnman/vim-pico8-color](https://github.com/markbahnman/vim-pico8-color))
 
+## Installation
+
+PICO-8.vim can be installed manually or using vim-plug:
+`Plug 'bakudankun/pico-8.vim'`
+
 ## Features
 
 * Proper syntax highlighting for `.p8` files as well as folding
