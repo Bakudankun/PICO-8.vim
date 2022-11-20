@@ -59,6 +59,13 @@ imitate_console		(default: 1)
 			width is set to 1, and 'colorcolumn' shows the border
 			at the width of PICO-8 console.
 
+					*g:pico8_config.pico8_args*
+pico8_args		(default: "")
+			Optional arguments that are passed to PICO-8
+			executable when executing |:Pico8Run|.
+			Note: You may need to escape some special characters
+			depending on your OS.
+
 					*g:pico8_config.pico8_path*
 pico8_path		(default: "pico8")
 			Path to the PICO-8 executable. This is used for
