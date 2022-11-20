@@ -132,6 +132,11 @@ if s:is_cartridge && pico8#get_config('colorize_graphics', 1)
   endfunction
 
   call s:highlight_pixels()
+
+  augroup pico8-syntax
+    autocmd! ColorScheme <buffer>
+    autocmd ColorScheme <buffer> call s:highlight_pixels()
+  augroup END
 endif
 
 
