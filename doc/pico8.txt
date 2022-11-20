@@ -33,6 +33,7 @@ COMMANDS						*pico8-commands*
 :Pico8Run [options]					*:Pico8Run*
 			Open PICO-8 and run the current file. Logs by
 			"printh()" are output to the opened |terminal-window|.
+			Some |<mods>| are available.
 			On Vim, options for |:terminal| like "++close" are
 			available. Also see |term++close|.
 			On Neovim, |++opt| and |+cmd| are available.
