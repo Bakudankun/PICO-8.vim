@@ -14,7 +14,7 @@ endfunction
 
 
 function! pico8#run(mods, options) abort
-  let cmdline = '"' . pico8#get_config('pico8_path', 'pico8') . '" -run ' . expand('%:p:S')
+  let cmdline = '"' . pico8#get_config('pico8_path', 'pico8') . '" -run ' . expand('%')
   let cmdline = cmdline . ' ' . pico8#get_config('pico8_args', '')
   if has('win32')
     " PICO-8 on Windows does not output logs if run directly.
